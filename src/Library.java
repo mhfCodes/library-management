@@ -15,7 +15,7 @@ public class Library {
 		boolean loggedIn = true;
 		while (loggedIn) {
 			System.out.println(" ------- Please Select Your Option: -------");
-			System.out.println("(Add Book Data = 1)\n(Get Book Data = 2)\n(Exit = 3)");
+			System.out.println("(Add Book Data = 1)\n(Get All Books Data = 2)\n(Exit = 3)");
 			choice = scanner.nextInt();
 			scanner.nextLine();
 			switch (choice) {
@@ -31,8 +31,7 @@ public class Library {
 					DB.addBook(this.title, this.author, this.genre, this.price);
 					break;
 				case (2):
-					// get book
-					System.out.println("Information retreived");
+					DB.getBooks();
 					break;
 				case (3):
 					System.out.println("Good Bye");

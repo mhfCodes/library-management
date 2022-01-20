@@ -4,7 +4,7 @@ public class DB {
 	
 	public static Connection connect() {
 		try {
-			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/library", "postgres", "rekaeil");
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/library", "postgres", "xxxx");
 			return connection;
 	
 		} catch (SQLException e) {
@@ -29,7 +29,25 @@ public class DB {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Connection Failed at Adding Books");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void getBooks() {
+		Connection connection = connect();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("SELECT * FROM books");
+			while (rs.next()) {
+				String title = rs.getString("title");
+				String author = rs.getString("author");
+				String genre = rs.getString("genre");
+				int price = rs.getInt("price");
+				System.out.println(title + " - " + author + " - " + genre + " - " + price);
+			}
+		} catch (SQLException e) {
+			System.out.println("Connection Failed at Getting Books");
 			e.printStackTrace();
 		}
 	}
